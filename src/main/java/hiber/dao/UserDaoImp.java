@@ -32,12 +32,9 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User getUserByIdAndSeries(Long id, int series) {
-        Session session = sessionFactory.getCurrentSession();
-        List list = session.createCriteria(User.class).add(Restrictions.like("id", id))
-                .add(Restrictions.like("Cars_id", series)).list();
-        session.getTransaction().commit();
-        session.close();
-        return (User) list.get(0);
+        Query query = sessionFactory.getCurrentSession().createQuery("from User where id = :id and Cars_id = :series");
+        query.setParameter("id",id);
+        query.setParameter("series",series);
+        return (User) query.getSingleResult();
     }
-
 }

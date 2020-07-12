@@ -35,7 +35,7 @@ public class MainApp {
             System.out.println();
         }
 
-        System.out.println(userService.getUserByIdAndSeries(1L,1));
+        System.out.println(userService.getUserByIdAndSeries(3L,3));
 
         context.close();
     }
